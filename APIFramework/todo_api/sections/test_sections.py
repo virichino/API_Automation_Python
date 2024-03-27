@@ -1,10 +1,9 @@
 import logging
-
-import requests
-
+import pytest
 from config.config import URL
 from helpers.res_client import RestClient
 from utils.logger import get_logger
+import allure
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
@@ -18,7 +17,17 @@ class TestSections:
         cls.url_sections = f"{URL["URL_TODO"]}sections"
         cls.list_sections = []
         cls.rest_client = RestClient()
-
+    
+    @allure.epic("TODO API")
+    @allure.story("Sections")
+    @allure.feature("Get all sections")
+    @allure.title("Test get all sections")
+    @allure.description("Test that show the response of list of all sections")
+    @allure.tag("acceptance", "sections", "sanity")   
+    @allure.testcase("TC-1234")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.issue("BUG-123")
+    @pytest.mark.acceptance
     def test_get_all_sections(self, create_project, log_test_name):
         """
         Test to get all sections
@@ -27,7 +36,16 @@ class TestSections:
         response = self.rest_client.request(method_name="get",url=url_get_all_sections)
         assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
 
-
+    @allure.epic("TODO API")
+    @allure.story("Sections")
+    @allure.feature("Create sections")
+    @allure.title("Test create sections")
+    @allure.description("Test that show the response of a section created")
+    @allure.tag("acceptance", "sections", "sanity")   
+    @allure.testcase("TC-1234")
+    @allure.severity(allure.severity_level.CRITICAL)
+    @allure.issue("BUG-123")
+    @pytest.mark.acceptance
     def test_create_section(self,create_project, log_test_name):
         """
         Test to create a section
@@ -43,7 +61,7 @@ class TestSections:
         assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
 
 
-    
+    @pytest.mark.acceptance
     def test_update_section(self, create_section, log_test_name):
         """
         Test to update a section
@@ -57,9 +75,10 @@ class TestSections:
         response = self.rest_client.request(method_name="post", url=url_sections_update, body=body_section)
         #to be deleted
         id_section_created = response["body"]["id"]
-        self.list_sections.append(id_section_created)
+        #self.list_sections.append(id_section_created)
         assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
     
+    @pytest.mark.acceptance
     def test_delete_section(self, create_section, log_test_name):
         """
         Test to delete a section
@@ -70,14 +89,14 @@ class TestSections:
         assert response["status_code"] == 204, f"Error: {response["status_code"]}, expected 204"
 
 
-    @classmethod
-    def teardown_class(cls):
-        """
-        Delete all the test data created
-        """
-        LOGGER.info("Cleanup sections...")
-        for id_section in cls.list_sections:
-            response = cls.rest_client.request(method_name="delete",url=f"{cls.url_sections}/{id_section}")
-            LOGGER.info("Section ID deleted: %s", id_section)
-            if response["status_code"] != 204:
-                LOGGER.error("Section id deleted: %s", id_section)
+    # @classmethod
+    # def teardown_class(cls):
+    #     """
+    #     Delete all the test data created
+    #     """
+    #     LOGGER.info("Cleanup sections...")
+    #     for id_section in cls.list_sections:
+    #         response = cls.rest_client.request(method_name="delete",url=f"{cls.url_sections}/{id_section}")
+    #         LOGGER.info("Section ID deleted: %s", id_section)
+    #         if response["status_code"] != 204:
+    #             LOGGER.error("Section id deleted: %s", id_section)

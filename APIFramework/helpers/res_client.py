@@ -1,9 +1,10 @@
 import json as jsonSerializer
 import logging
+from requests_toolbelt.utils import dump
 
 import requests
 
-from config.config import HEADERS
+from config.config import HEADERS, URL
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
@@ -32,7 +33,7 @@ class RestClient:
             response.raise_for_status()
             if hasattr(response, "request"):
                 LOGGER.info("Response headers: %s", response.headers)
-                response_dict["headers"] = response.headers
+                response_dict["headers"] = response.headers                
         except requests.exceptions.HTTPError as http_error:
             LOGGER.error("HTTP error: %s", http_error)
         except requests.exceptions.RequestException as request_error:
@@ -43,7 +44,12 @@ class RestClient:
             else:
                 # case delete
                 response_dict["body"] = {"msg": "No body content"}
-            response_dict["status_code"] = response.status_code
+            LOGGER.info("Status code: %s", response.status_code)
+            response_dict["status_code"] = response.status_code         
+            # response_dict["request"] = {
+            #     "method": response.request.method,
+            #     "url": (response.request.url).replace(URL["URL_TODO"], "/"),
+            # }
 
         return response_dict
 
