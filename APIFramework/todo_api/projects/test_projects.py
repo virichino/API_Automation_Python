@@ -8,6 +8,7 @@ import logging
 import pytest
 from config.config import URL
 from helpers.res_client import RestClient
+from helpers.validate_response import ValidateResponse
 from utils.logger import get_logger
 
 LOGGER = get_logger(__name__, logging.DEBUG)
@@ -25,6 +26,7 @@ class TestProjects:
         cls.list_projects = []
         cls.url_projects = f"{URL["URL_TODO"]}projects"
         cls.rest_client = RestClient()
+        cls.validate = ValidateResponse()
 
     @classmethod
     def teardown_class(cls):
@@ -43,8 +45,9 @@ class TestProjects:
         """
         Method to get all projects
         """
-        response = self.rest_client.request(method_name="get", url=self.url_projects)
-        assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
+        response = self.rest_client.request(method_name="get", url=self.url_projects)          
+        self.validate.validate_response(response, endpoint="get_all_projects")      
+        #assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
 
     def test_create_project(self, log_test_name):
         """
@@ -56,7 +59,8 @@ class TestProjects:
         response = self.rest_client.request(method_name="post", url=self.url_projects, body=body_project)
         id_project_created = response["body"]["id"]
         self.list_projects.append(id_project_created)
-        assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
+        self.validate.validate_response(response, endpoint="create_project")
+        #assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
 
     def test_delete_project(self, create_project, log_test_name):
         """
@@ -65,7 +69,8 @@ class TestProjects:
         id_project = create_project
         url_todo = f"{self.url_projects}/{create_project}"
         response = self.rest_client.request(method_name="delete", url=url_todo) 
-        assert response["status_code"] == 204, f"Error: {response["status_code"]}, expected 204"
+        self.validate.validate_response(response, endpoint="delete_project")    
+        #assert response["status_code"] == 204, f"Error: {response["status_code"]}, expected 204"
 
     def test_update_project(self, create_project, log_test_name):
         """
@@ -80,4 +85,5 @@ class TestProjects:
         response = self.rest_client.request(method_name="post", url=url_todo_update, body=body_project)
         #add to a list of projects to be deleted
         self.list_projects.append(id_project)
-        assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"
+        self.validate.validate_response(response, endpoint="update_project")    
+        #assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 200"

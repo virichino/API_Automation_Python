@@ -19,5 +19,5 @@ HEADERS = {
         "Content-Type": "application/json",
     }
 }
-
+abs_path = os.path.abspath(__file__ + "../../../")
 TIMEOUT = 10
