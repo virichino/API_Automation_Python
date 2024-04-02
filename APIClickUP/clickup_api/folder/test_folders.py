@@ -1,4 +1,6 @@
 import logging
+
+import pytest
 from entities.common import Common
 from helpers.res_client import RestClient
 from helpers.validate_response import ValidateResponse
@@ -36,7 +38,9 @@ class TestFolders:
     @allure.title("Test to get all folders")
     @allure.description("Method to get all folders")
     @allure.tag("CRUD")
-    @allure.testcase("test_getAll_folders")     
+    @allure.testcase("test_getAll_folders")
+    @pytest.mark.crud
+    @pytest.mark.folders       
     def test_getAll_folders(self,create_space,log_test_name):
         """
         Test to get all folders
@@ -49,7 +53,9 @@ class TestFolders:
     @allure.title("Test to create a folder")
     @allure.description("Method to update a folder")
     @allure.tag("CRUD")
-    @allure.testcase("test_create_folder") 
+    @allure.testcase("test_create_folder")
+    @pytest.mark.crud
+    @pytest.mark.folders   
     def test_create_folder(self,create_space,log_test_name):
         """
         Test to create a folder
@@ -68,7 +74,9 @@ class TestFolders:
     @allure.title("Test to update a folder")
     @allure.description("Method to update a folder")
     @allure.tag("CRUD")
-    @allure.testcase("test_update_folder") 
+    @allure.testcase("test_update_folder")
+    @pytest.mark.crud
+    @pytest.mark.folders  
     def test_update_folder(self,create_folder,log_test_name):
         """
         Test to update a folder
@@ -85,7 +93,9 @@ class TestFolders:
     @allure.title("Test to delete a folder")
     @allure.description("Method to delete a folder")
     @allure.tag("CRUD")
-    @allure.testcase("test_delete_folder")         
+    @allure.testcase("test_delete_folder")
+    @pytest.mark.crud
+    @pytest.mark.folders         
     def test_delete_folder(self,create_folder,log_test_name):
         """
         Test to delete a folder

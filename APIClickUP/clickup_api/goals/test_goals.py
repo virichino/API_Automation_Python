@@ -1,5 +1,7 @@
 
 import logging
+
+import pytest
 from entities.common import Common
 from helpers.res_client import RestClient
 from utils.logger import get_logger
@@ -38,6 +40,8 @@ class TestGoals:
     @allure.tag("CRUD")
     @allure.testcase("test_getAll_goals")
     @allure.issue("BUG-123")
+    @pytest.mark.crud
+    @pytest.mark.goals 
     def test_getAll_goals(self,create_goal,log_test_name):
         """
         Method to get all goals
@@ -48,7 +52,9 @@ class TestGoals:
     @allure.title("Test to create a goals")
     @allure.description("Method to create all goals")
     @allure.tag("CRUD")
-    @allure.testcase("test_create_goal")    
+    @allure.testcase("test_create_goal")
+    @pytest.mark.crud
+    @pytest.mark.goals     
     def test_create_goal(self,log_test_name):
         """
         Method to create a goal
@@ -73,7 +79,9 @@ class TestGoals:
     @allure.title("Test to update a goal")
     @allure.description("Method to update a goals")
     @allure.tag("CRUD")
-    @allure.testcase("test_update_goal")  
+    @allure.testcase("test_update_goal")
+    @pytest.mark.crud
+    @pytest.mark.goals    
     def test_update_goal(self,create_goal,log_test_name):
         """
         Method to update a goal
@@ -100,7 +108,9 @@ class TestGoals:
     @allure.title("Test to delete a goal")
     @allure.description("Method to delete a goals")
     @allure.tag("CRUD")
-    @allure.testcase("test_deleteGoal") 
+    @allure.testcase("test_deleteGoal")
+    @pytest.mark.crud
+    @pytest.mark.goals  
     def test_deleteGoal(self,create_goal,log_test_name):
         """
         Method to delete a goal
