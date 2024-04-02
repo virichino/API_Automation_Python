@@ -1,0 +1,43 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/team/9013178021/goal"
+    },
+    "response": {
+        "body": {
+            "goals": [
+                {
+                    "id": "6c946252-2c49-4dbd-8475-0dec92524261",
+                    "pretty_id": "1",
+                    "name": "Goal Name1",
+                    "team_id": "9013149962",
+                    "creator": 82299744,
+                    "owner": null,
+                    "color": "#32a852",
+                    "date_created": "1712010590027",
+                    "start_date": null,
+                    "due_date": "1568036964079",
+                    "description": "Goal Description",
+                    "private": false,
+                    "archived": false,
+                    "multiple_owners": true,
+                    "editor_token": "goal:6c946252-2c49-4dbd-8475-0dec92524261:eb2330bf-256f-46a5-ab63-3f1d9789909f:395c9078-d0a9-410e-9010-eef0f73a1343",
+                    "date_updated": "1712010590027",
+                    "last_update": "1712010590027",
+                    "folder_id": null,
+                    "pinned": false,
+                    "owners": [],
+                    "key_result_count": 0,
+                    "members": [ ],
+                    "group_members": [ ],
+                    "percent_completed": 0
+                }
+            ],
+            "folders": [ ]
+            }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}

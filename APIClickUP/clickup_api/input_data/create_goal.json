@@ -1,0 +1,41 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/team/9013178021/goal"
+    },
+    "response": {
+        "body": {
+            "goal": {
+                "id": "1471548b-4872-4279-8248-af93831e857c",
+                "pretty_id": "1",
+                "name": "Goal Name",
+                "team_id": "9013178021",
+                "creator": 82299744,
+                "color": "#32a852",
+                "date_created": "1712027814537",
+                "start_date": null,
+                "due_date": "1568036964079",
+                "description": "Goal Description",
+                "private": false,
+                "archived": false,
+                "multiple_owners": true,
+                "editor_token": "goal:1471548b-4872-4279-8248-af93831e857c:d66ab9b1-bb6a-4aae-8e51-9458268656ef:068736ad-23ef-4060-9ce2-225ffaa42097",
+                "date_updated": "1712027814537",
+                "folder_id": null,
+                "folder_name": null,
+                "members": [ ],
+                "group_members": [ ],
+                "owners": [{"id": 82299744, "username": "Carlos Tito", "email": "crisbelwla@hotmail.com", "color": "", "profilePicture": null, "initials": "CT"}],
+                "key_results": [ ],
+                "key_result_count": 0,
+                "percent_completed": 0,
+                "history": [ ],
+                "pretty_url": "https://app.clickup.com/9013178021/goals/1"
+            }
+        }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}

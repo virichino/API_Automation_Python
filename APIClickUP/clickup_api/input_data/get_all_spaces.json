@@ -1,0 +1,29 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/space"
+    },
+    "response": {
+        "body": {
+            "spaces": [
+                {
+                "id": "790",
+                "name": "Updated Space Name",
+                "private": false,
+                "color": null,
+                "avatar": "https://attachments.clickup.com/profilePictures/12312312_HoB.jpg",
+                "admin_can_manage": true,
+                "archived": false,
+                "members": [],
+                "statuses": [],
+                "multiple_assignees": false,
+                "features": {}
+                }
+            ]
+            }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}

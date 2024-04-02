@@ -1,0 +1,14 @@
+{
+    "request": {
+        "method": "DELETE",
+        "url": "//goal/e53a033c-900e-462d-a849-4a216b06d930"
+    },
+    "response": {
+        "body": {            
+        }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}

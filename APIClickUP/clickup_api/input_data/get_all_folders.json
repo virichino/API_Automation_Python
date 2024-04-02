@@ -1,0 +1,26 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/folder"
+    },
+    "response": {
+        "body": {
+            "folders": [
+                {
+                "id": "457",
+                "name": "Updated Folder Name",
+                "orderindex": 0,
+                "override_statuses": false,
+                "hidden": false,
+                "space": {},
+                "task_count": "0",
+                "lists": [ ]
+                }
+            ]
+        }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}

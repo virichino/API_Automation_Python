@@ -1,0 +1,20 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/team/{team_id}/space"
+    },
+    "response": {
+        "body": {
+            "msg": {
+                "err":"Space with this name already exists",
+                "ECODE":"PROJECT_023"
+            }
+        }
+        
+    }
+    ,
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 400
+}

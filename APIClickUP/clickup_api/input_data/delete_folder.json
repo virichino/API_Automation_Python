@@ -1,0 +1,14 @@
+{
+    "request": {
+        "method": "DELETE",
+        "url": "folder/folder_id"
+    },
+    "response": {
+        "body": {            
+        }
+    },
+    "headers": {
+        "Content-type": "application/json; charset=utf-8"
+    },
+    "status_code": 200
+}
