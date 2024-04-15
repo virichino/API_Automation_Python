@@ -22,7 +22,7 @@ def create_goal(request):
     goal_created = goal.create_goal()
     LOGGER.info("Response from create goal: %s", goal_created["body"])
      # Conditionally execute the teardown based on the test name
-    if request.function.__name__ != "test_deleteGoal":
+    if request.function.__name__ != "test_delete_goal":
         yield goal_created["body"]
         goal.delete_goal(goal_created["body"]["goal"]["id"])
     else:
