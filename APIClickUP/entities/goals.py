@@ -43,8 +43,8 @@ class Goals:
         Method to delete a goal
         """
         LOGGER.info("Clean up of goal")
-        url = f"{URL["URL_CLICKUP"]}goal/{goal_id}"
+        url = f"{URL['URL_CLICKUP']}goal/{goal_id}"
         response = self.rest_client.request(method_name="delete",url=url)
         LOGGER.info("Goal deleted: %s", response["status_code"])
-        assert response["status_code"] == 200, f"Error: {response["status_code"]}, expected 204"     
+        assert response["status_code"] == 200, f"Error: {response['status_code']}, expected 204"     
     

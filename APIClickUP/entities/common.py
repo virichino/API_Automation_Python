@@ -16,7 +16,7 @@ class Common:
         """
         Method to get the team id
         """
-        url_team = f"{URL["URL_CLICKUP"]}team"
+        url_team = f"{URL['URL_CLICKUP']}team"
         response = self.rest_client.request("get",url=url_team)
         LOGGER.info("Response from get team id: %s", response["body"])
         return response["body"]["teams"][0]["id"]
@@ -25,7 +25,7 @@ class Common:
         """
         Method to get the user id
         """
-        url_user = f"{URL["URL_CLICKUP"]}user"
+        url_user = f"{URL['URL_CLICKUP']}user"
         response = self.rest_client.request("get",url=url_user)
         LOGGER.info("Response from get user id: %s", response["body"])
         return response["body"]["user"]["id"]
