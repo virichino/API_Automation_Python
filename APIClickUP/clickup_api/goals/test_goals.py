@@ -129,4 +129,4 @@ class TestGoals:
         LOGGER.info("--------Teardown class---------")
         for id_goal in cls.list_goals:
             request = cls.rest_client.request('delete',url=f"{cls.url_goals}/{id_goal}")
-            assert request["status_code"] == 200, f"Error: {request["status_code"]}, expected 200"
+            assert request["status_code"] == 200, f"Error: {request['status_code']}, expected 200"
