@@ -1,0 +1,1 @@
+{"uuid": "7265a338-6f07-46c6-a000-988ea3824be2", "children": ["be06745a-dd25-47c4-8340-c1dbf904efd2"], "befores": [{"name": "create_goal", "status": "passed", "start": 1713154906942, "stop": 1713154912484}], "afters": [{"name": "create_goal::0", "status": "passed", "start": 1713154913120, "stop": 1713154914923}], "start": 1713154906942, "stop": 1713154914923}
