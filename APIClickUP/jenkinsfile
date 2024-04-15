@@ -13,7 +13,7 @@ pipeline {
                     withPythonEnv('python3') {
                         sh 'pip install -r requirements.txt'
                         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                            sh "pylint clickup_api/"
+                            sh "pylint utils/ clickup_api/ helpers/"
                         }                      
                     } 
                 }                

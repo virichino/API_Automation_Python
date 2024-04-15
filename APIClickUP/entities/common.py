@@ -1,17 +1,22 @@
+"""
+Module that includes common functions to be used in the tests
+"""
 import logging
+import datetime
 from config.config import URL
 from helpers.res_client import RestClient
 from utils.logger import get_logger
-import datetime
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 class Common:
+    """
+    Class to include common functions
+    """
     def __init__(self, rest_client = None):
-       
         if rest_client is None:
             self.rest_client = RestClient()
-    
+
     def get_team_id(self):
         """
         Method to get the team id
@@ -29,7 +34,7 @@ class Common:
         response = self.rest_client.request("get",url=url_user)
         LOGGER.info("Response from get user id: %s", response["body"])
         return response["body"]["user"]["id"]
-    
+
     def get_date(self, days = 0):
         """
         Method to get the date

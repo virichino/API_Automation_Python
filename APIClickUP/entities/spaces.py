@@ -1,3 +1,6 @@
+"""
+Module to manage spaces in ClickUp
+"""
 import logging
 from config.config import HEADERS, URL
 from entities.common import Common
@@ -7,15 +10,18 @@ from utils.logger import get_logger
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 class Spaces:
+    """
+    Class to manage spaces in ClickUp
+    """
     def __init__(self, rest_client = None):
         self.url_clickup = URL["URL_CLICKUP"]
-        self.header_clickup = HEADERS["HEADERS_CLICKUP"]       
+        self.header_clickup = HEADERS["HEADERS_CLICKUP"]
         self.url_space = f"{self.url_clickup}/space"
         self.common = Common()
         self.team_id = self.common.get_team_id()
         if rest_client is None:
             self.rest_client = RestClient()
-    
+
     def create_space(self):
         """
         Method to create an space
@@ -69,7 +75,7 @@ class Spaces:
         url_space_delete = f"{self.url_space}/{created_space_id}"
         response = self.rest_client.request("delete", url=url_space_delete)
         return response
-    
+
     def delete_list_spaces(self, list_spaces):
         """
         Method to delete a list of spaces
@@ -79,5 +85,4 @@ class Spaces:
             response = self.rest_client.request("delete", url=f"{self.url_space}/{id_space}")
             # cls.delete_space(id_space)
             if response["status_code"] != 204:
-                LOGGER.info("Section id deleted: %s", id_space)  
-    
+                LOGGER.info("Section id deleted: %s", id_space)
