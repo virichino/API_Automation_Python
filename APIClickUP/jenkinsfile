@@ -12,7 +12,7 @@ pipeline {
                 sh 'cd APIClickUP'
                 withPythonEnv('python3') {
                     sh 'pip install -r requirements.txt'
-                    sh 'python3.11 -m pytest clickup_api/ -v -s --alluredir reports/allure/allure-results'
+                    sh 'python3 -m pytest clickup_api/ -v -s --alluredir reports/allure/allure-results'
                 }
             }
         }
