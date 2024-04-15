@@ -1,19 +1,22 @@
-
+"""
+Module to test the goals endpoint
+"""
 import logging
-
 import pytest
-from entities.common import Common
-from helpers.res_client import RestClient
-from utils.logger import get_logger
-from config.config import HEADERS, URL
-from helpers.validate_response import ValidateResponse
 import allure
+from config.config import HEADERS, URL
+from entities.common import Common
+from utils.logger import get_logger
+from helpers.res_client import RestClient
+from helpers.validate_response import ValidateResponse
 
 LOGGER = get_logger(__name__, logging.DEBUG)
 
 @allure.feature("Sections")
 class TestGoals:
-
+    """
+    Class to test the goals endpoint
+    """
     @classmethod
     def setup_class(cls):
         """
@@ -22,40 +25,37 @@ class TestGoals:
         LOGGER.debug("SetupClass method")
         cls.url_clickup = URL["URL_CLICKUP"]
         cls.header_clickup = HEADERS["HEADERS_CLICKUP"]
-        cls.url_user = f"{cls.url_clickup}user"        
+        cls.url_user = f"{cls.url_clickup}user"
         cls.url_goals = f"{cls.url_clickup}/goal"
-        
-        cls.rest_client = RestClient(cls.header_clickup)  
+        cls.rest_client = RestClient(cls.header_clickup)
         common = Common()
         team_id = common.get_team_id()
-        cls.url_with_team_goals = f"{cls.url_clickup}team/{team_id}/goal"         
+        cls.url_with_team_goals = f"{cls.url_clickup}team/{team_id}/goal"
         cls.user_id = common.get_user_id()
         cls.validate = ValidateResponse()
-        
-                                      
         cls.list_goals = []
-          
+
     @allure.title("Test to get all goals")
     @allure.description("Method to get all goals")
     @allure.tag("CRUD")
     @allure.testcase("test_getAll_goals")
     @allure.issue("BUG-123")
     @pytest.mark.crud
-    @pytest.mark.goals 
-    def test_getAll_goals(self,create_goal,log_test_name):
+    @pytest.mark.goals
+    def test_get_all_goals(self,create_goal,log_test_name): # pylint: disable=unused-argument
         """
         Method to get all goals
-        """        
+        """
         response = self.rest_client.request("get",url=self.url_with_team_goals)
-        self.validate.validate_response(response, endpoint="get_all_goals")   
+        self.validate.validate_response(response, endpoint="get_all_goals")
 
     @allure.title("Test to create a goals")
     @allure.description("Method to create all goals")
     @allure.tag("CRUD")
     @allure.testcase("test_create_goal")
     @pytest.mark.crud
-    @pytest.mark.goals     
-    def test_create_goal(self,log_test_name):
+    @pytest.mark.goals
+    def test_create_goal(self,log_test_name): # pylint: disable=unused-argument
         """
         Method to create a goal
         """
@@ -73,16 +73,15 @@ class TestGoals:
         LOGGER.info("Response from create goal: %s", response["body"])
         id_goal_created = response["body"]["goal"]["id"]
         self.list_goals.append(id_goal_created)
-        self.validate.validate_response(response, endpoint="create_goal")  
-        
+        self.validate.validate_response(response, endpoint="create_goal")
 
     @allure.title("Test to update a goal")
     @allure.description("Method to update a goals")
     @allure.tag("CRUD")
     @allure.testcase("test_update_goal")
     @pytest.mark.crud
-    @pytest.mark.goals    
-    def test_update_goal(self,create_goal,log_test_name):
+    @pytest.mark.goals
+    def test_update_goal(self,create_goal,log_test_name): # pylint: disable=unused-argument
         """
         Method to update a goal
         """
@@ -103,15 +102,15 @@ class TestGoals:
             "color": "#32a852"
         }
         response = self.rest_client.request("put", url=url_goal_update, json=body_goal)
-        self.validate.validate_response(response, endpoint="update_goal")  
-    
+        self.validate.validate_response(response, endpoint="update_goal")
+
     @allure.title("Test to delete a goal")
     @allure.description("Method to delete a goals")
     @allure.tag("CRUD")
     @allure.testcase("test_deleteGoal")
     @pytest.mark.crud
-    @pytest.mark.goals  
-    def test_deleteGoal(self,create_goal,log_test_name):
+    @pytest.mark.goals
+    def test_delete_goal(self,create_goal,log_test_name): # pylint: disable=unused-argument
         """
         Method to delete a goal
         """
@@ -119,8 +118,8 @@ class TestGoals:
         LOGGER.debug("ID goal to delete: %s", id_goal)
         url_goal_delete = f"{self.url_goals}/{id_goal}"
         response = self.rest_client.request('delete',url=url_goal_delete)
-        self.validate.validate_response(response, endpoint="delete_goal") 
-        
+        self.validate.validate_response(response, endpoint="delete_goal")
+
     @classmethod
     def teardown_class(cls):
         """

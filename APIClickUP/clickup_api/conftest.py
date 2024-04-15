@@ -1,3 +1,6 @@
+"""
+This module contains the fixtures for the tests
+"""
 import logging
 from dotenv import load_dotenv
 import pytest
@@ -18,21 +21,19 @@ def create_goal(request):
     goal = Goals()
     goal_created = goal.create_goal()
     LOGGER.info("Response from create goal: %s", goal_created["body"])
-    
      # Conditionally execute the teardown based on the test name
     if request.function.__name__ != "test_deleteGoal":
         yield goal_created["body"]
         goal.delete_goal(goal_created["body"]["goal"]["id"])
     else:
         yield goal_created["body"]  # Skip the teardown
-                    
 
 @pytest.fixture()
 def log_test_name(request):
     """
     Method to get logs for the test
     """
-    LOGGER.info("------------Test '%s' STARTED------------", request.node.name)   
+    LOGGER.info("------------Test '%s' STARTED------------", request.node.name)
     def fin():
         LOGGER.info("------------Test '%s' COMPLETED------------", request.node.name)
     request.addfinalizer(fin)
@@ -41,12 +42,12 @@ def log_test_name(request):
 def create_space():
     """
     Test to create a space
-    """        
+    """
     space = Spaces()
     space_id = space.create_space()
     yield space_id
     space.delete_space(space_id["body"]["id"])
-    
+
 @pytest.fixture()
 def create_folder():
     """
@@ -59,14 +60,16 @@ def create_folder():
     space.delete_space(space_created)
 
 @pytest.fixture()
-def delete_list_spaces(request):
+def delete_list_spaces():
     """
     Test to delete a space
     """
     space = Spaces()
     yield space.delete_list_spaces
-    
-    
+
 def pytest_addoption(parser):
+    """
+    Method to add the options to the command line
+    """
     parser.addoption("--envCly", action="store", default="dev", help="Environment where the tests are eecuted")
     parser.addoption("--browserWeb", action="store", default="chrome", help="Browser to execute the UI tests")
