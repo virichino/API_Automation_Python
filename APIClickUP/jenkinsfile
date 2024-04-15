@@ -12,12 +12,9 @@ pipeline {
                 dir('APIClickUP') {
                     withPythonEnv('python3') {
                         sh 'pip install -r requirements.txt'
-                        try {
-                            sh 'pylint clickup_api/'
-                        } catch (Exception e) {
-                            // Print the pylint error
-                            echo "Pylint failed: ${e.message}"
-                        }                        
+                        catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                            sh "pylint clickup_api/"
+                        }                      
                     } 
                 }                
             }
