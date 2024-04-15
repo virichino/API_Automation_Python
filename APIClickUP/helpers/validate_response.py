@@ -8,7 +8,7 @@ LOGGER = get_logger(__name__, logging.DEBUG)
 class ValidateResponse:
     
     def validate_response(self, actual_response=None, endpoint=None):
-        expected_response = self.read_input_data_json(f"{abs_path}\\clickup_api\\input_data\\{endpoint}.json")
+        expected_response = self.read_input_data_json(f"{abs_path}/clickup_api/input_data/{endpoint}.json")
         if "body" in actual_response:
             self.validate_values(expected_response["status_code"], actual_response["status_code"], key_compare="status_code")
             self.validate_values(expected_response["response"]["body"], actual_response["body"], key_compare="body")
