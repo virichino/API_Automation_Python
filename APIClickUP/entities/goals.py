@@ -24,7 +24,7 @@ class Goals:
         common = Common()
         team_id = common.get_team_id()
         user_id = common.get_user_id()
-        url_goals = f"{URL["URL_CLICKUP"]}team/{team_id}/goal"
+        url_goals = f"{URL['URL_CLICKUP']}team/{team_id}/goal"
         body_goal = {
             "name": "Goal Name Fixture 1",
             "due_date": 1568036964079,
