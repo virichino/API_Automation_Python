@@ -8,9 +8,9 @@ pipeline {
             }
         }
         stage('Run Python Scripts') {
-            steps {
-                sh 'cd APIClickUP'
+            steps {             
                 withPythonEnv('python3') {
+                    sh 'cd APIClickUP'
                     sh 'pip install -r requirements.txt'
                     sh 'python3 -m pytest clickup_api/ -v -s --alluredir reports/allure/allure-results'
                 }
